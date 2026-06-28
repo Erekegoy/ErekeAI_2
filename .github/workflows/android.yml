@@ -5,11 +5,13 @@ on:
     branches:
       - main
       - develop
+      - feature/context-ai
 
   pull_request:
     branches:
       - main
       - develop
+      - feature/context-ai
 
 jobs:
   build:
