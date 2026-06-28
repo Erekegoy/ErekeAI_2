@@ -1,10 +1,12 @@
 package com.ereke.ai.data
 
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlin.concurrent.thread
+import kotlinx.coroutines.launch
 
-class ChatViewModel {
+class ChatViewModel : ViewModel() {
 
     private val repo = ChatRepository()
 
@@ -19,16 +21,14 @@ class ChatViewModel {
 
         val user = Message(text, true)
         MemoryManager.add(user)
-
         _messages.value = MemoryManager.getHistory()
 
-        thread {
+        viewModelScope.launch {
 
             val answer = repo.ask(text)
 
             val ai = Message(answer, false)
             MemoryManager.add(ai)
-
             _messages.value = MemoryManager.getHistory()
         }
     }
