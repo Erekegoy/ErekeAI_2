@@ -24,6 +24,13 @@ object GroqClient {
             }
             """.trimIndent()
 
+if (BuildConfig.GROQ_API_KEY == "YOUR_KEY_HERE" ||
+    BuildConfig.GROQ_API_KEY == "PUT_YOUR_GROQ_API_KEY_HERE" ||
+    BuildConfig.GROQ_API_KEY.isBlank()) {
+
+    return "❌ API KEY не загружен: ${BuildConfig.GROQ_API_KEY}"
+}
+
             val request = Request.Builder()
                 .url("https://api.groq.com/openai/v1/chat/completions")
                 .addHeader("Authorization", "Bearer ${BuildConfig.GROQ_API_KEY}")
