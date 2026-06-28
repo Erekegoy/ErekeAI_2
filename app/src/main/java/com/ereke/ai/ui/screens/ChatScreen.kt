@@ -20,13 +20,17 @@ import com.ereke.ai.data.Message
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.foundation.lazy.rememberLazyListState
+import kotlinx.coroutines.launch
 
 @Composable
 fun ChatScreen() {
 
     val vm = remember { ChatViewModel() }
     val messages by vm.messages.collectAsState()
-
+    val listState = rememberLazyListState()
+val scope = rememberCoroutineScope()
+    
     var input by remember { mutableStateOf("") }
     var selectedImage by remember { mutableStateOf<Uri?>(null) }
 
@@ -41,8 +45,14 @@ fun ChatScreen() {
     ) {
 
         LazyColumn(
-            modifier = Modifier.weight(1f)
-        ) {
+    state = listState,
+    modifier = Modifier.weight(1f)
+)
+LaunchedEffect(messages.size) {
+    if (messages.isNotEmpty()) {
+        listState.animateScrollToItem(messages.lastIndex)
+    }
+} {
             items(messages) {
                 MessageBubble(it)
             }
