@@ -1,5 +1,8 @@
 package com.ereke.ai.ui
 
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.runtime.LaunchedEffect
+import com.ereke.ai.tts.TTSManager
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -20,6 +23,11 @@ fun ErekeApp() {
     val vm = remember { ChatViewModel() }
     val messages by vm.messages.collectAsState()
     var input by remember { mutableStateOf("") }
+    val context = LocalContext.current
+
+LaunchedEffect(Unit) {
+    TTSManager.init(context)
+}
 
     Scaffold(
         topBar = {
