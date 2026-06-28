@@ -1,5 +1,6 @@
 package com.ereke.ai.ui
 
+import coil.compose.AsyncImage
 import android.net.Uri
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -57,7 +58,16 @@ LaunchedEffect(Unit) {
                     MessageBubble(msg)
                 }
             }
-
+selectedImage?.let { uri ->
+    AsyncImage(
+        model = uri,
+        contentDescription = "Selected image",
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(180.dp)
+            .padding(8.dp)
+    )
+}
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
