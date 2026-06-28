@@ -9,7 +9,7 @@ import okhttp3.RequestBody.Companion.toRequestBody
 
 object GroqClient {
 
-    private val client = OkHttpClient.Builder().callTimeout(java.time.Duration.ofSeconds(60)).build()
+    private val client = OkHttpClient.Builder().connectTimeout(java.time.Duration.ofSeconds(30)).readTimeout(java.time.Duration.ofSeconds(60)).callTimeout(java.time.Duration.ofSeconds(90)).build()
 
     suspend fun chat(prompt: String): String {
 
@@ -17,7 +17,7 @@ object GroqClient {
 
             val json = """
             {
-              "model":"llama-3.3-70b-versatile","temperature":0.7,"max_tokens":1024,
+              "model":"llama-3.3-70b-versatile","temperature":0.5,"max_tokens":1024,
               "messages":[{"role":"system","content":"Ты — ErekeAI, персональный ИИ-помощник Ерлана."},
                 {
                   "role":"user",
@@ -31,6 +31,7 @@ object GroqClient {
                 .url("https://api.groq.com/openai/v1/chat/completions")
                 .addHeader("Authorization", "Bearer ${BuildConfig.GROQ_API_KEY}")
                 .addHeader("Content-Type", "application/json")
+            .addHeader("User-Agent", "ErekeAI/1.0")
                 .post(json.toRequestBody("application/json".toMediaType()))
                 .build()
 
