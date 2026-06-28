@@ -20,36 +20,35 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.Alignment
 import com.ereke.ai.data.ChatViewModel
 import com.ereke.ai.data.Message
+import com.ereke.ai.ui.screens.ChatScreen
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ErekeApp() {
-    val vm = remember { ChatViewModel() }
-    val messages by vm.messages.collectAsState()
-    var input by remember { mutableStateOf("") }
-    var selectedImage by remember { mutableStateOf<Uri?>(null) }
 
-val imagePicker = rememberLauncherForActivityResult(
-    contract = ActivityResultContracts.GetContent()
-) { uri ->
-    selectedImage = uri
-}
     val context = LocalContext.current
 
-LaunchedEffect(Unit) {
-    TTSManager.init(context)
-}
+    LaunchedEffect(Unit) {
+        TTSManager.init(context)
+    }
 
     Scaffold(
         topBar = {
-            TopAppBar(title = { Text("ErekeAI") })
+            TopAppBar(
+                title = { Text("ErekeAI") }
+            )
         }
     ) { padding ->
-        Column(
+
+        Box(
             modifier = Modifier
                 .padding(padding)
                 .fillMaxSize()
         ) {
+            ChatScreen()
+        }
+    }
+} {
 
             LazyColumn(
                 modifier = Modifier.weight(1f)
