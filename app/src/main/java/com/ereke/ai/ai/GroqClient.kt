@@ -29,26 +29,24 @@ object GroqClient {
 
             val request = Request.Builder()
                 .url("https://api.groq.com/openai/v1/chat/completions")
-                .addHeader("Authorization","Bearer ${BuildConfig.GROQ_API_KEY}")
-                .addHeader("Content-Type","application/json")
+                .addHeader("Authorization", "Bearer ${BuildConfig.GROQ_API_KEY}")
+                .addHeader("Content-Type", "application/json")
                 .post(json.toRequestBody("application/json".toMediaType()))
                 .build()
 
-            val response = client.newCall(request).execute()
-            val body = response.body?.string() ?: return "Пустой ответ"
+            val body = client.newCall(request).execute().body?.string() ?: return "Empty response"
 
             val root = JsonParser().parse(body).asJsonObject
 
-            root["choices"]
-                .asJsonArray[0]
-                .asJsonObject["message"]
-                .asJsonObject["content"]
+            root.getAsJsonArray("choices")
+                .get(0)
+                .asJsonObject
+                .getAsJsonObject("message")
+                .get("content")
                 .asString
 
         } catch (e: Exception) {
-            "Ошибка: ${e.message}"
+            "Error: ${e.message}"
         }
-
     }
-
 }
