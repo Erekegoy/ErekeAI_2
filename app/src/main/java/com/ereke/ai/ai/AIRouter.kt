@@ -1,20 +1,22 @@
 package com.ereke.ai.ai
 
 enum class AIProvider {
-    GROQ
+    GROQ,
+    GEMINI,
+    OPENAI,
+    OFFLINE
 }
 
 object AIRouter {
 
-    private var provider = AIProvider.GROQ
-
-    fun setProvider(ai: AIProvider) {
-        provider = ai
-    }
+    var provider = AIProvider.GROQ
 
     fun chat(prompt: String): String {
         return when (provider) {
             AIProvider.GROQ -> GroqClient.chat(prompt)
+            AIProvider.GEMINI -> GeminiClient.chat(prompt)
+            AIProvider.OPENAI -> OpenAIClient.chat(prompt)
+            AIProvider.OFFLINE -> OfflineClient.chat(prompt)
         }
     }
 }
