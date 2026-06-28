@@ -1,7 +1,9 @@
 package com.ereke.ai.data
 
+import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.ereke.ai.tts.TTSManager
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -31,13 +33,32 @@ class ChatViewModel : ViewModel() {
         viewModelScope.launch {
 
             val answer = repo.ask(text)
-            
-            com.ereke.ai.tts.TTSManager.speak(answer)
+
+            TTSManager.speak(answer)
 
             MemoryManager.clear()
 
             MemoryManager.add(user)
-        com.ereke.ai.memory.ConversationMemory.add(user)
+            com.ereke.ai.memory.ConversationMemory.add(user)
+            MemoryManager.add(Message(answer, false))
+
+            _messages.value = MemoryManager.getHistory()
+        }
+    }
+
+    fun sendImage(uri: Uri) {
+
+        val loading = Message("🖼️ ErekeAI анализирует изображение...", false)
+        MemoryManager.add(loading)
+        _messages.value = MemoryManager.getHistory()
+
+        viewModelScope.launch {
+
+            val answer = repo.askImage(uri)
+
+            TTSManager.speak(answer)
+
+            MemoryManager.clear()
             MemoryManager.add(Message(answer, false))
 
             _messages.value = MemoryManager.getHistory()
