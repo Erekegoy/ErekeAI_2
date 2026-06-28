@@ -37,7 +37,7 @@ object GroqClient {
             val response = client.newCall(request).execute()
             val body = response.body?.string() ?: return "Пустой ответ"
 
-            val root = JsonParser.parseString(body).asJsonObject
+            val root = JsonParser().parse(body).asJsonObject
 
             root["choices"]
                 .asJsonArray[0]
