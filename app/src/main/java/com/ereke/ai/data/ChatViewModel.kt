@@ -11,12 +11,25 @@ class ChatViewModel {
     private val _messages = MutableStateFlow<List<Message>>(emptyList())
     val messages: StateFlow<List<Message>> = _messages
 
+    init {
+        _messages.value = MemoryManager.getHistory()
+    }
+
     fun sendUserMessage(text: String) {
-        _messages.value = _messages.value + Message(text, true)
+
+        val user = Message(text, true)
+        MemoryManager.add(user)
+
+        _messages.value = MemoryManager.getHistory()
 
         thread {
+
             val answer = repo.ask(text)
-            _messages.value = _messages.value + Message(answer, false)
+
+            val ai = Message(answer, false)
+            MemoryManager.add(ai)
+
+            _messages.value = MemoryManager.getHistory()
         }
     }
 }
