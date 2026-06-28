@@ -18,7 +18,7 @@ object GroqClient {
             val json = """
             {
               "model":"llama-3.3-70b-versatile",
-              "messages":[
+              "messages":[{"role":"system","content":"Ты — ErekeAI, персональный ИИ-помощник Ерлана."},
                 {
                   "role":"user",
                   "content":"$prompt"
