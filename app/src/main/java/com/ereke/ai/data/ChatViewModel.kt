@@ -21,6 +21,7 @@ class ChatViewModel : ViewModel() {
 
         val user = Message(text, true)
         MemoryManager.add(user)
+        com.ereke.ai.memory.ConversationMemory.add(user)
         _messages.value = MemoryManager.getHistory()
 
         val loading = Message("🤖 ErekeAI думает...", false)
@@ -34,6 +35,7 @@ class ChatViewModel : ViewModel() {
             MemoryManager.clear()
 
             MemoryManager.add(user)
+        com.ereke.ai.memory.ConversationMemory.add(user)
             MemoryManager.add(Message(answer, false))
 
             _messages.value = MemoryManager.getHistory()

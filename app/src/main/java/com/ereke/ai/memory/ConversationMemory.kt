@@ -10,13 +10,10 @@ object ConversationMemory {
         history.add(message)
     }
 
-    fun all(): List<Message> {
-        return history.toList()
-    }
+    fun getHistory(): List<Message> = history.toList()
 
-    fun last(count: Int): List<Message> {
-        return history.takeLast(count)
-    }
+    fun last(count: Int): List<Message> =
+        history.takeLast(count)
 
     fun clear() {
         history.clear()
