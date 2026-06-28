@@ -1,5 +1,8 @@
 package com.ereke.ai.ui
 
+import android.net.Uri
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.runtime.LaunchedEffect
 import com.ereke.ai.tts.TTSManager
@@ -23,6 +26,13 @@ fun ErekeApp() {
     val vm = remember { ChatViewModel() }
     val messages by vm.messages.collectAsState()
     var input by remember { mutableStateOf("") }
+    var selectedImage by remember { mutableStateOf<Uri?>(null) }
+
+val imagePicker = rememberLauncherForActivityResult(
+    contract = ActivityResultContracts.GetContent()
+) { uri ->
+    selectedImage = uri
+}
     val context = LocalContext.current
 
 LaunchedEffect(Unit) {
@@ -72,7 +82,7 @@ LaunchedEffect(Unit) {
 
 IconButton(
     onClick = {
-        // Прикрепление файлов подключим позже
+        imagePicker.launch("image/*")
     }
 ) {
     Icon(
