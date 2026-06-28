@@ -6,6 +6,9 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AttachFile
 import androidx.compose.material.icons.filled.Mic
@@ -13,24 +16,20 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.ereke.ai.data.ChatViewModel
 import com.ereke.ai.data.Message
-import androidx.compose.foundation.text.KeyboardActions
-import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.ui.text.input.ImeAction
-import androidx.compose.foundation.lazy.rememberLazyListState
-import kotlinx.coroutines.launch
 
 @Composable
 fun ChatScreen() {
 
     val vm = remember { ChatViewModel() }
     val messages by vm.messages.collectAsState()
+
     val listState = rememberLazyListState()
-val scope = rememberCoroutineScope()
-    
+
     var input by remember { mutableStateOf("") }
     var selectedImage by remember { mutableStateOf<Uri?>(null) }
 
@@ -40,29 +39,28 @@ val scope = rememberCoroutineScope()
         selectedImage = uri
     }
 
+    LaunchedEffect(messages.size) {
+        if (messages.isNotEmpty()) {
+            listState.animateScrollToItem(messages.lastIndex)
+        }
+    }
+
     Column(
         modifier = Modifier.fillMaxSize()
     ) {
 
         LazyColumn(
-    state = listState,
-    modifier = Modifier.weight(1f)
-) 
-
-LaunchedEffect(messages.size) {
-    if (messages.isNotEmpty()) {
-        listState.animateScrollToItem(messages.lastIndex)
-    }
-}
- {
-            items(messages) {
-                MessageBubble(it)
+            state = listState,
+            modifier = Modifier.weight(1f)
+        ) {
+            items(messages) { msg ->
+                MessageBubble(msg)
             }
         }
 
-        selectedImage?.let {
+        selectedImage?.let { uri ->
             AsyncImage(
-                model = it,
+                model = uri,
                 contentDescription = null,
                 modifier = Modifier
                     .fillMaxWidth()
@@ -79,29 +77,32 @@ LaunchedEffect(messages.size) {
         ) {
 
             OutlinedTextField(
-    value = input,
-    onValueChange = { input = it },
-    modifier = Modifier.weight(1f),
-    singleLine = true,
-    keyboardOptions = KeyboardOptions(
-        imeAction = ImeAction.Send
-    ),
-    keyboardActions = KeyboardActions(
-        onSend = {
-            if (input.isNotBlank()) {
-                vm.sendUserMessage(input)
-                input = ""
-            }
-        }
-    )
-)
+                value = input,
+                onValueChange = { input = it },
+                modifier = Modifier.weight(1f),
+                singleLine = true,
+                keyboardOptions = KeyboardOptions(
+                    imeAction = ImeAction.Send
+                ),
+                keyboardActions = KeyboardActions(
+                    onSend = {
+                        if (input.isNotBlank()) {
+                            vm.sendUserMessage(input)
+                            input = ""
+                        }
+                    }
+                )
+            )
 
             IconButton(
                 onClick = {
                     imagePicker.launch("image/*")
                 }
             ) {
-                Icon(Icons.Default.AttachFile, null)
+                Icon(
+                    imageVector = Icons.Default.AttachFile,
+                    contentDescription = "Attach"
+                )
             }
 
             IconButton(
@@ -109,7 +110,10 @@ LaunchedEffect(messages.size) {
                     // Voice v1
                 }
             ) {
-                Icon(Icons.Default.Mic, null)
+                Icon(
+                    imageVector = Icons.Default.Mic,
+                    contentDescription = "Voice"
+                )
             }
 
             Button(
