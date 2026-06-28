@@ -35,7 +35,7 @@ object GroqClient {
                 .post(json.toRequestBody("application/json".toMediaType()))
                 .build()
 
-            val body = client.newCall(request).execute().body?.string() ?: return "Empty response"
+            val body = client.newCall(request).execute().body?.string() ?: return "⚠️ Groq вернул пустой ответ"
 
             val root = JsonParser().parse(body).asJsonObject
 
@@ -47,7 +47,7 @@ object GroqClient {
                 .asString
 
         } catch (e: Exception) {
-            "Error: ${e.message}"
+            "⚠️ Ошибка соединения с Groq: ${e.message}"
         }
     }
 }

@@ -8,6 +8,7 @@ object ConversationMemory {
 
     fun add(message: Message) {
         history.add(message)
+        if (history.size > 10) history.removeAt(0)
     }
 
     fun getHistory(): List<Message> = history.toList()
