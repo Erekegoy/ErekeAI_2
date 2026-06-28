@@ -1,0 +1,29 @@
+# Gradle
+.gradle/
+build/
+**/build/
+
+# Local
+local.properties
+
+# IDE
+.idea/
+*.iml
+
+# Logs
+*.log
+
+# Keystore
+*.jks
+*.keystore
+
+# APK
+*.apk
+*.aab
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Secrets
+.env
