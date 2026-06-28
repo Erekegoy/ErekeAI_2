@@ -4,9 +4,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Mic
-import androidx.compose.material.icons.filled.AttachFile
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -51,39 +48,17 @@ fun ErekeApp() {
                     onValueChange = { input = it },
                     modifier = Modifier.weight(1f)
                 )
-            IconButton(
-    onClick = {
-        // Голосовой ввод подключим следующим этапом
-    }
-) {
-    Icon(
-        imageVector = Icons.Default.Mic,
-        contentDescription = "Voice"
-    )
-}
 
-IconButton(
-    onClick = {
-        // Прикрепление файлов подключим позже
-    }
-) {
-    Icon(
-        imageVector = Icons.Default.AttachFile,
-        contentDescription = "Attach"
-    )
-}
-
-Button(
-    onClick = {
-        if (input.isNotBlank()) {
-            vm.sendUserMessage(input)
-            input = ""
-        }
-    }
-) {
-    Text("Send")
-}
-
+                Button(
+                    onClick = {
+                        if (input.isNotBlank()) {
+                            vm.sendUserMessage(input)
+                            input = ""
+                        }
+                    }
+                ) {
+                    Text("Send")
+                }
             }
         }
     }
