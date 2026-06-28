@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.ereke.ai.app-mergeDebugResources-60:/values-or/values-or.xml",
+            "outputFile": "com.ereke.ai.app-mergeDebugResources-65:/values-or/values-or.xml",
             "map": [
                 {
                     "source": "/data/data/com.termux/files/home/.gradle/caches/transforms-4/e256df3718cfc01d3606bd46a5010a10/transformed/appcompat-1.6.1/res/values-or/values-or.xml",

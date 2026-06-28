@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.ereke.ai.app-mergeDebugResources-60:/values-sv/values-sv.xml",
+            "outputFile": "com.ereke.ai.app-mergeDebugResources-65:/values-sv/values-sv.xml",
             "map": [
                 {
                     "source": "/data/data/com.termux/files/home/.gradle/caches/transforms-4/5315f5a70b60d75d0dd09b5c80aa2b49/transformed/core-1.13.1/res/values-sv/values-sv.xml",

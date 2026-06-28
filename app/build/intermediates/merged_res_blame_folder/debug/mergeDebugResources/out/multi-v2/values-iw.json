@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.ereke.ai.app-mergeDebugResources-60:/values-iw/values-iw.xml",
+            "outputFile": "com.ereke.ai.app-mergeDebugResources-65:/values-iw/values-iw.xml",
             "map": [
                 {
                     "source": "/data/data/com.termux/files/home/.gradle/caches/transforms-4/797e79a88131c943d5a0b773612cc3a2/transformed/foundation-release/res/values-iw/values-iw.xml",

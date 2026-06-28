@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.ereke.ai.app-mergeDebugResources-60:/values-zh-rHK/values-zh-rHK.xml",
+            "outputFile": "com.ereke.ai.app-mergeDebugResources-65:/values-zh-rHK/values-zh-rHK.xml",
             "map": [
                 {
                     "source": "/data/data/com.termux/files/home/.gradle/caches/transforms-4/1988f76fd66891c8511be728e9f0ec98/transformed/material3-release/res/values-zh-rHK/values-zh-rHK.xml",

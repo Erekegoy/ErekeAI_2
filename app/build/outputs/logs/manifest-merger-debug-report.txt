@@ -4,6 +4,11 @@ ADDED from /data/data/com.termux/files/home/ErekeAI2/app/src/main/AndroidManifes
 INJECTED from /data/data/com.termux/files/home/ErekeAI2/app/src/main/AndroidManifest.xml:2:1-29:12
 INJECTED from /data/data/com.termux/files/home/ErekeAI2/app/src/main/AndroidManifest.xml:2:1-29:12
 INJECTED from /data/data/com.termux/files/home/ErekeAI2/app/src/main/AndroidManifest.xml:2:1-29:12
+MERGED from [androidx.navigation:navigation-common:2.7.7] /data/data/com.termux/files/home/.gradle/caches/transforms-4/f45c6a4abeca948a57d8749aba50dcd0/transformed/navigation-common-2.7.7/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.navigation:navigation-runtime:2.7.7] /data/data/com.termux/files/home/.gradle/caches/transforms-4/0db1c36e66e35ddbffec67494147da53/transformed/navigation-runtime-2.7.7/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.navigation:navigation-common-ktx:2.7.7] /data/data/com.termux/files/home/.gradle/caches/transforms-4/bc996293faa4dc6a82cc744ba5a2fc9f/transformed/navigation-common-ktx-2.7.7/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.navigation:navigation-runtime-ktx:2.7.7] /data/data/com.termux/files/home/.gradle/caches/transforms-4/e5eb4e5337fc2500311ca74e4f9520da/transformed/navigation-runtime-ktx-2.7.7/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.navigation:navigation-compose:2.7.7] /data/data/com.termux/files/home/.gradle/caches/transforms-4/5e6cab472230ad6f562b68a51e2b8ab3/transformed/navigation-compose-2.7.7/AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.accompanist:accompanist-permissions:0.36.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/ea4f07d4ed8f4c2e5de7a556e50fef67/transformed/accompanist-permissions-0.36.0/AndroidManifest.xml:17:1-23:12
 MERGED from [com.google.android.material:material:1.12.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/1fe0aadfa684debc0fa4e355826687f3/transformed/material-1.12.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.constraintlayout:constraintlayout:2.0.1] /data/data/com.termux/files/home/.gradle/caches/transforms-4/0f633dd8d2ad2fc1620f261b48f9b6af/transformed/constraintlayout-2.0.1/AndroidManifest.xml:2:1-11:12
@@ -163,6 +168,16 @@ uses-sdk
 INJECTED from /data/data/com.termux/files/home/ErekeAI2/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /data/data/com.termux/files/home/ErekeAI2/app/src/main/AndroidManifest.xml
 INJECTED from /data/data/com.termux/files/home/ErekeAI2/app/src/main/AndroidManifest.xml
+MERGED from [androidx.navigation:navigation-common:2.7.7] /data/data/com.termux/files/home/.gradle/caches/transforms-4/f45c6a4abeca948a57d8749aba50dcd0/transformed/navigation-common-2.7.7/AndroidManifest.xml:20:5-44
+MERGED from [androidx.navigation:navigation-common:2.7.7] /data/data/com.termux/files/home/.gradle/caches/transforms-4/f45c6a4abeca948a57d8749aba50dcd0/transformed/navigation-common-2.7.7/AndroidManifest.xml:20:5-44
+MERGED from [androidx.navigation:navigation-runtime:2.7.7] /data/data/com.termux/files/home/.gradle/caches/transforms-4/0db1c36e66e35ddbffec67494147da53/transformed/navigation-runtime-2.7.7/AndroidManifest.xml:20:5-44
+MERGED from [androidx.navigation:navigation-runtime:2.7.7] /data/data/com.termux/files/home/.gradle/caches/transforms-4/0db1c36e66e35ddbffec67494147da53/transformed/navigation-runtime-2.7.7/AndroidManifest.xml:20:5-44
+MERGED from [androidx.navigation:navigation-common-ktx:2.7.7] /data/data/com.termux/files/home/.gradle/caches/transforms-4/bc996293faa4dc6a82cc744ba5a2fc9f/transformed/navigation-common-ktx-2.7.7/AndroidManifest.xml:5:5-44
+MERGED from [androidx.navigation:navigation-common-ktx:2.7.7] /data/data/com.termux/files/home/.gradle/caches/transforms-4/bc996293faa4dc6a82cc744ba5a2fc9f/transformed/navigation-common-ktx-2.7.7/AndroidManifest.xml:5:5-44
+MERGED from [androidx.navigation:navigation-runtime-ktx:2.7.7] /data/data/com.termux/files/home/.gradle/caches/transforms-4/e5eb4e5337fc2500311ca74e4f9520da/transformed/navigation-runtime-ktx-2.7.7/AndroidManifest.xml:5:5-44
+MERGED from [androidx.navigation:navigation-runtime-ktx:2.7.7] /data/data/com.termux/files/home/.gradle/caches/transforms-4/e5eb4e5337fc2500311ca74e4f9520da/transformed/navigation-runtime-ktx-2.7.7/AndroidManifest.xml:5:5-44
+MERGED from [androidx.navigation:navigation-compose:2.7.7] /data/data/com.termux/files/home/.gradle/caches/transforms-4/5e6cab472230ad6f562b68a51e2b8ab3/transformed/navigation-compose-2.7.7/AndroidManifest.xml:5:5-44
+MERGED from [androidx.navigation:navigation-compose:2.7.7] /data/data/com.termux/files/home/.gradle/caches/transforms-4/5e6cab472230ad6f562b68a51e2b8ab3/transformed/navigation-compose-2.7.7/AndroidManifest.xml:5:5-44
 MERGED from [com.google.accompanist:accompanist-permissions:0.36.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/ea4f07d4ed8f4c2e5de7a556e50fef67/transformed/accompanist-permissions-0.36.0/AndroidManifest.xml:21:5-44
 MERGED from [com.google.accompanist:accompanist-permissions:0.36.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/ea4f07d4ed8f4c2e5de7a556e50fef67/transformed/accompanist-permissions-0.36.0/AndroidManifest.xml:21:5-44
 MERGED from [com.google.android.material:material:1.12.0] /data/data/com.termux/files/home/.gradle/caches/transforms-4/1fe0aadfa684debc0fa4e355826687f3/transformed/material-1.12.0/AndroidManifest.xml:20:5-44
