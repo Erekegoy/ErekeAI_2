@@ -7,9 +7,9 @@ object PromptBuilder {
 
     fun build(userMessage: String): List<ChatMessage> {
 
-        val list = mutableListOf<ChatMessage>()
+        val messages = mutableListOf<ChatMessage>()
 
-        list.add(
+        messages.add(
             ChatMessage(
                 "system",
                 SystemPrompt.TEXT
@@ -17,8 +17,7 @@ object PromptBuilder {
         )
 
         ConversationMemory.last(10).forEach {
-
-            list.add(
+            messages.add(
                 ChatMessage(
                     if (it.isUser) "user" else "assistant",
                     it.text
@@ -26,13 +25,8 @@ object PromptBuilder {
             )
         }
 
-        list.add(
-            ChatMessage(
-                "user",
-                userMessage
-            )
-        )
+        messages.add(ChatMessage("user", userMessage))
 
-        return list
+        return messages
     }
 }
