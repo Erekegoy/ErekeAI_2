@@ -31,6 +31,8 @@ class ChatViewModel : ViewModel() {
         viewModelScope.launch {
 
             val answer = repo.ask(text)
+            
+            com.ereke.ai.tts.TTSManager.speak(answer)
 
             MemoryManager.clear()
 
