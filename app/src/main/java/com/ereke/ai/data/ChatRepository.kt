@@ -4,7 +4,7 @@ import com.ereke.ai.ai.AIRouter
 
 class ChatRepository {
 
-    fun ask(prompt: String): String {
+    suspend fun ask(prompt: String): String {
         return try {
             AIRouter.chat(prompt)
         } catch (e: Exception) {

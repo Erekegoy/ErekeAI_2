@@ -11,7 +11,7 @@ object GroqClient {
 
     private val client = OkHttpClient()
 
-    fun chat(prompt: String): String {
+    suspend fun chat(prompt: String): String {
 
         return try {
 

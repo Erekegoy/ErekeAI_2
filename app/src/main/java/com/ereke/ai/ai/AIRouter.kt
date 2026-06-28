@@ -11,7 +11,7 @@ object AIRouter {
 
     var provider = AIProvider.GROQ
 
-    fun chat(prompt: String): String {
+    suspend fun chat(prompt: String): String {
         provider = com.ereke.ai.settings.SettingsManager.getProvider()
         return when (provider) {
             AIProvider.GROQ -> GroqClient.chat(prompt)
