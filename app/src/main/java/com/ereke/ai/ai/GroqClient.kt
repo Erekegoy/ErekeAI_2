@@ -46,7 +46,7 @@ object GroqClient {
                 return "HTTP ${response.code}: $body"
             }
 
-            JsonParser.parseString(body)
+            JsonParser.parse(body)
                 .asJsonObject
                 .getAsJsonArray("choices")
                 .get(0)
