@@ -1,25 +1,17 @@
 package com.ereke.ai.ui
 
-import coil.compose.AsyncImage
-import android.net.Uri
-import androidx.activity.compose.rememberLauncherForActivityResult
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.compose.ui.platform.LocalContext
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import com.ereke.ai.tts.TTSManager
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Mic
-import androidx.compose.material.icons.filled.AttachFile
-import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.Alignment
-import com.ereke.ai.data.ChatViewModel
-import com.ereke.ai.data.Message
+import androidx.compose.ui.platform.LocalContext
+import com.ereke.ai.tts.TTSManager
 import com.ereke.ai.ui.screens.ChatScreen
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -35,7 +27,9 @@ fun ErekeApp() {
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("ErekeAI") }
+                title = {
+                    Text("ErekeAI")
+                }
             )
         }
     ) { padding ->
@@ -47,85 +41,5 @@ fun ErekeApp() {
         ) {
             ChatScreen()
         }
-    }
-} {
-
-            LazyColumn(
-                modifier = Modifier.weight(1f)
-            ) {
-                items(messages) { msg ->
-                    MessageBubble(msg)
-                }
-            }
-selectedImage?.let { uri ->
-    AsyncImage(
-        model = uri,
-        contentDescription = "Selected image",
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(180.dp)
-            .padding(8.dp)
-    )
-}
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(8.dp),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                OutlinedTextField(
-                    value = input,
-                    onValueChange = { input = it },
-                    modifier = Modifier.weight(1f)
-                )
-            IconButton(
-    onClick = {
-        // TODO: запуск голосового ввода
-    }
-) {
-    Icon(
-        imageVector = Icons.Default.Mic,
-        contentDescription = "Voice"
-    )
-}
-
-IconButton(
-    onClick = {
-        imagePicker.launch("image/*")
-    }
-) {
-    Icon(
-        imageVector = Icons.Default.AttachFile,
-        contentDescription = "Attach"
-    )
-}
-
-Button(
-    onClick = {
-        if (input.isNotBlank()) {
-            vm.sendUserMessage(input)
-            input = ""
-        }
-    }
-) {
-    Text("Send")
-}
-
-            }
-        }
-    }
-}
-
-@Composable
-fun MessageBubble(msg: Message) {
-    Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(8.dp)
-    ) {
-        Text(
-            text = msg.text,
-            modifier = Modifier.padding(12.dp)
-        )
     }
 }
