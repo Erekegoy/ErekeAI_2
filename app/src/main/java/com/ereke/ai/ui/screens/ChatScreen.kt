@@ -47,12 +47,18 @@ val scope = rememberCoroutineScope()
         LazyColumn(
     state = listState,
     modifier = Modifier.weight(1f)
-)
+) {
+    items(messages) {
+        MessageBubble(it)
+    }
+}
+
 LaunchedEffect(messages.size) {
     if (messages.isNotEmpty()) {
         listState.animateScrollToItem(messages.lastIndex)
     }
-} {
+}
+ {
             items(messages) {
                 MessageBubble(it)
             }
