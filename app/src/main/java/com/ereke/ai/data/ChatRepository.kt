@@ -1,6 +1,6 @@
 package com.ereke.ai.data
 
-import com.ereke.ai.ai.GroqClient
+import com.ereke.ai.ai.AIRouter
 
 class ChatRepository {
 
@@ -11,5 +11,4 @@ class ChatRepository {
             "Ошибка: ${e.message}"
         }
     }
-
 }
