@@ -64,10 +64,11 @@ fun ChatScreen() {
         ) {
 
             OutlinedTextField(
-                value = input,
-                onValueChange = { input = it },
-                modifier = Modifier.weight(1f)
-            )
+    value = input,
+    onValueChange = { input = it },
+    modifier = Modifier.weight(1f),
+    singleLine = true
+)
 
             IconButton(
                 onClick = {
