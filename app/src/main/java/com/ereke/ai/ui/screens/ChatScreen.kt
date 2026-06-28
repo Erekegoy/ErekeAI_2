@@ -34,10 +34,14 @@ fun ChatScreen() {
     var selectedImage by remember { mutableStateOf<Uri?>(null) }
 
     val imagePicker = rememberLauncherForActivityResult(
-        ActivityResultContracts.GetContent()
-    ) { uri ->
-        selectedImage = uri
+    ActivityResultContracts.GetContent()
+) { uri ->
+    selectedImage = uri
+
+    if (uri != null) {
+        vm.sendImage(uri)
     }
+}
 
     LaunchedEffect(messages.size) {
         if (messages.isNotEmpty()) {
