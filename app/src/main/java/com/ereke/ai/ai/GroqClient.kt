@@ -10,7 +10,7 @@ import java.time.Duration
 
 object GroqClient {
 
-    private val client = OkHttpClient.Builder()
+    private val client = NetworkConfig.client
         .connectTimeout(Duration.ofSeconds(30))
         .readTimeout(Duration.ofSeconds(60))
         .callTimeout(Duration.ofSeconds(90))
