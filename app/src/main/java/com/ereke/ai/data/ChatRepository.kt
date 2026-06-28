@@ -6,7 +6,7 @@ class ChatRepository {
 
     fun ask(prompt: String): String {
         return try {
-            GroqClient.chat(prompt)
+            AIRouter.chat(prompt)
         } catch (e: Exception) {
             "Ошибка: ${e.message}"
         }
