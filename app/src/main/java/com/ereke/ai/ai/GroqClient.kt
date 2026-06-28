@@ -1,7 +1,7 @@
 package com.ereke.ai.ai
 
-import com.google.gson.JsonParser
 import com.ereke.ai.BuildConfig
+import com.google.gson.JsonParser
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.Request
 import okhttp3.RequestBody.Companion.toRequestBody
@@ -24,12 +24,12 @@ object GroqClient {
             }
             """.trimIndent()
 
-if (BuildConfig.GROQ_API_KEY == "YOUR_KEY_HERE" ||
-    BuildConfig.GROQ_API_KEY == "PUT_YOUR_GROQ_API_KEY_HERE" ||
-    BuildConfig.GROQ_API_KEY.isBlank()) {
-
-    return "❌ API KEY не загружен: ${BuildConfig.GROQ_API_KEY}"
-}
+            if (BuildConfig.GROQ_API_KEY == "YOUR_KEY_HERE" ||
+                BuildConfig.GROQ_API_KEY == "PUT_YOUR_GROQ_API_KEY_HERE" ||
+                BuildConfig.GROQ_API_KEY.isBlank()
+            ) {
+                return "❌ API KEY не загружен: ${BuildConfig.GROQ_API_KEY}"
+            }
 
             val request = Request.Builder()
                 .url("https://api.groq.com/openai/v1/chat/completions")
@@ -39,10 +39,14 @@ if (BuildConfig.GROQ_API_KEY == "YOUR_KEY_HERE" ||
                 .post(json.toRequestBody("application/json".toMediaType()))
                 .build()
 
-            val body = client.newCall(request).execute().body?.string()
-                ?: return "⚠️ Groq вернул пустой ответ"
+            val response = client.newCall(request).execute()
+            val body = response.body?.string() ?: ""
 
-            JsonParser().parse(body)
+            if (!response.isSuccessful) {
+                return "HTTP ${response.code}: $body"
+            }
+
+            JsonParser.parseString(body)
                 .asJsonObject
                 .getAsJsonArray("choices")
                 .get(0)
@@ -52,7 +56,8 @@ if (BuildConfig.GROQ_API_KEY == "YOUR_KEY_HERE" ||
                 .asString
 
         } catch (e: Exception) {
-            "⚠️ Ошибка соединения с Groq: ${e.message}"
+            e.printStackTrace()
+            return "⚠️ ${e.javaClass.simpleName}: ${e.message ?: "без сообщения"}"
         }
     }
 }
