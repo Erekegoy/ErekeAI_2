@@ -3,21 +3,14 @@ package com.ereke.ai.ai
 import com.google.gson.JsonParser
 import com.ereke.ai.BuildConfig
 import okhttp3.MediaType.Companion.toMediaType
-import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody.Companion.toRequestBody
-import java.time.Duration
 
 object GroqClient {
 
     private val client = NetworkConfig.client
-        .connectTimeout(Duration.ofSeconds(30))
-        .readTimeout(Duration.ofSeconds(60))
-        .callTimeout(Duration.ofSeconds(90))
-        .build()
 
     suspend fun chat(prompt: String): String {
-
         return try {
 
             val messages = PromptBuilder.build(prompt)
@@ -42,7 +35,7 @@ object GroqClient {
             val body = client.newCall(request).execute().body?.string()
                 ?: return "⚠️ Groq вернул пустой ответ"
 
-            JsonParser().parse(body as String)
+            JsonParser().parse(body)
                 .asJsonObject
                 .getAsJsonArray("choices")
                 .get(0)
