@@ -9,7 +9,7 @@ import okhttp3.RequestBody.Companion.toRequestBody
 
 object GroqClient {
 
-    private val client = OkHttpClient()
+    private val client = OkHttpClient.Builder().callTimeout(java.time.Duration.ofSeconds(60)).build()
 
     suspend fun chat(prompt: String): String {
 
