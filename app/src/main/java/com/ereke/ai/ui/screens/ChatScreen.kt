@@ -17,6 +17,9 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.ereke.ai.data.ChatViewModel
 import com.ereke.ai.data.Message
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.ui.text.input.ImeAction
 
 @Composable
 fun ChatScreen() {
@@ -67,7 +70,18 @@ fun ChatScreen() {
     value = input,
     onValueChange = { input = it },
     modifier = Modifier.weight(1f),
-    singleLine = true
+    singleLine = true,
+    keyboardOptions = KeyboardOptions(
+        imeAction = ImeAction.Send
+    ),
+    keyboardActions = KeyboardActions(
+        onSend = {
+            if (input.isNotBlank()) {
+                vm.sendUserMessage(input)
+                input = ""
+            }
+        }
+    )
 )
 
             IconButton(
