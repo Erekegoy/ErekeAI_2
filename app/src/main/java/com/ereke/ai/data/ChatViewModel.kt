@@ -23,12 +23,19 @@ class ChatViewModel : ViewModel() {
         MemoryManager.add(user)
         _messages.value = MemoryManager.getHistory()
 
+        val loading = Message("🤖 ErekeAI думает...", false)
+        MemoryManager.add(loading)
+        _messages.value = MemoryManager.getHistory()
+
         viewModelScope.launch {
 
             val answer = repo.ask(text)
 
-            val ai = Message(answer, false)
-            MemoryManager.add(ai)
+            MemoryManager.clear()
+
+            MemoryManager.add(user)
+            MemoryManager.add(Message(answer, false))
+
             _messages.value = MemoryManager.getHistory()
         }
     }
