@@ -46,14 +46,17 @@ object GroqClient {
                 return "HTTP ${response.code}: $body"
             }
 
-            JsonParser.parse(body)
-                .asJsonObject
-                .getAsJsonArray("choices")
-                .get(0)
-                .asJsonObject
-                .getAsJsonObject("message")
-                .get("content")
-                .asString
+            val jsonObject = JsonParser()
+    .parse(body)
+    .asJsonObject
+
+jsonObject
+    .getAsJsonArray("choices")
+    .get(0)
+    .asJsonObject
+    .getAsJsonObject("message")
+    .get("content")
+    .asString
 
         } catch (e: Exception) {
             e.printStackTrace()
